@@ -1,0 +1,51 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    font-size: 21px;
+}
+
+.listItem {
+    display: flex;
+    /*height: 50px;*/
+    align-items: center;
+    border-bottom: 1px solid #e4e4e4;
+    justify-content: space-between;
+    position: relative;
+    padding-right: 10px;
+}
+
+.listItem:hover .deleteButton {
+    display: flex;
+}
+
+.navigate {
+    cursor:pointer;
+}
+
+.navigate:hover {
+    background-color: #f3f3f3;
+}
+
+.deleteButton {
+    padding: 0 15px;
+    color: #fff;
+    height: 100%;
+    background: #d4145a;
+    position: absolute;
+    right:0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+}
+
+.deleteButton:hover {
+    background: #a5174a;
+}
+
+.title {
+    display: flex;
+    flex: 1;
+    height:100%;
+    padding: 0 10px;
+    align-items: center;
+}

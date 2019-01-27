@@ -1,0 +1,52 @@
+.ArticleList {
+    display: flex;
+    height: 50px;
+    align-items: center;
+}
+.ArticleTitle {
+    display: inline-block;
+    margin-left: 20px;
+    font-size: 24px;
+}
+.CommentTitle {
+    display: flex;
+    padding: 20px;
+}
+.CommentPhoto {
+    height: 50px;
+    width: 50px;
+    background-color: #0e1d3c;
+}
+.CommentText {
+    padding-left: 20px;
+}
+.Overtext {
+    width: 380px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.textCenter {
+    text-align: center;
+}
+.Container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 220px);
+    grid-gap: 20px;
+}
+.Item {
+    display: flex;
+    position: relative;
+    height: 200px;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.disabled {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border: none;
+}
