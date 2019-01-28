@@ -14,6 +14,13 @@ export function addContact(data) {
   };
 }
 
+export function updateContactOrder(data) {
+    return {
+        type: types.UPDATE_CONTACT_ORDER,
+        payload: data
+    };
+}
+
 export function updateContact(data) {
     return {
         type: types.UPDATE_CONTACT,

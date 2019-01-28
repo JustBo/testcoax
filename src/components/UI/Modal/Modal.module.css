@@ -5,7 +5,9 @@
     background-color: white;
     width: 70%;
     border: 1px solid #ccc;
-    box-shadow: 1px 1px 1px black;
+    -webkit-box-shadow: 8px 7px 21px -8px rgba(0,0,0,0.74);
+    -moz-box-shadow: 8px 7px 21px -8px rgba(0,0,0,0.74);
+    box-shadow: 8px 7px 21px -8px rgba(0,0,0,0.74);
     padding: 16px;
     top: 30%;
     right: 0;
@@ -13,11 +15,4 @@
     margin-right: auto;
     margin-left: auto;
     transition: all 0.3s ease-out;
-}
-
-@media (min-width: 600px) {
-    .Modal {
-        /*width: 500px;*/
-        /*left: calc(50% - 250px);*/
-    }
 }

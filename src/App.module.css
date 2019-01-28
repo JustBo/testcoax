@@ -1,52 +1,67 @@
-.ArticleList {
-    display: flex;
-    height: 50px;
-    align-items: center;
-}
-.ArticleTitle {
-    display: inline-block;
-    margin-left: 20px;
-    font-size: 24px;
-}
-.CommentTitle {
-    display: flex;
-    padding: 20px;
-}
-.CommentPhoto {
-    height: 50px;
-    width: 50px;
-    background-color: #0e1d3c;
-}
-.CommentText {
-    padding-left: 20px;
-}
-.Overtext {
-    width: 380px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
 .textCenter {
     text-align: center;
 }
 .Container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 220px);
-    grid-gap: 20px;
+    /*grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));*/
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 50px;
+    margin: 20px;
 }
 .Item {
-    display: flex;
+    display: inline-flex;
     position: relative;
-    height: 200px;
+    height: 120px;
     width: 200px;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     border: 1px solid black;
     cursor: pointer;
-}
-.disabled {
-    width: 0;
-    height: 0;
+    padding: 15px;
     overflow: hidden;
-    border: none;
+    margin: 0 auto;
+    -webkit-box-shadow: 8px 7px 21px -8px rgba(0,0,0,0.74);
+    -moz-box-shadow: 8px 7px 21px -8px rgba(0,0,0,0.74);
+    box-shadow: 8px 7px 21px -8px rgba(0,0,0,0.74);
+}
+
+@media only screen and (max-width : 840px) {
+    .Container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width : 540px) {
+    .Container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.Item > div {
+    margin-top: 15px;
+}
+
+.disabled {
+    overflow: hidden;
+    visibility: hidden;
+}
+.formItem {
+    display: flex;
+    align-items: flex-end;
+    padding: 10px;
+}
+
+.formItem label {
+    flex: 1;
+    text-align: left;
+    min-width: 40px;
+}
+
+.formItem input {
+    flex: 4;
+}
+
+.NameField {
+    font-weight: bold;
 }
