@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Field, reduxForm } from 'redux-form';
+import {Field, reduxForm} from 'redux-form';
 
 import Form from "./UI/Form";
 import Input from "./UI/Input";
@@ -8,34 +8,55 @@ import Button from "./UI/Button";
 
 import classes from "../App.module.css";
 
-let ContactForm = props => {
-    const { handleSubmit } = props;
+const validate = values => {
+    const errors = {};
+    if (!values.firstName) {
+        errors.firstName = 'Required';
+    }
+    if (!values.lastName) {
+        errors.lastName = 'Required';
+    }
+
+    if (!values.email) {
+        errors.email = 'Required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address';
+    }
+    if (!values.phone) {
+        errors.phone = 'Required';
+    } else if (/\d[+]/g.test(values.phone)) {
+        errors.phone = 'Invalid phone number';
+    }
+    console.log(errors);
+    return errors;
+};
+
+const renderField = ({input, label, type, meta: {touched, error}}) => (
+    <div>
+        <div className={classes.formItem}>
+            <label>{label}</label>
+            <Input {...input} type={type}/>
+        </div>
+        <div className={classes.errorInput}>
+            {touched && (error && <span>{error}</span>)}
+        </div>
+    </div>
+);
+
+const ContactForm = props => {
+    const {handleSubmit} = props;
     return (
         <Form onSubmit={handleSubmit}>
-            <div className={classes.formItem}>
-                <label htmlFor="firstName">First Name:</label>
-                <Field name="firstName" component={Input} type="text" />
-            </div>
-            <div className={classes.formItem}>
-                <label htmlFor="lastName">Last Name:</label>
-                <Field name="lastName" component={Input} type="text" />
-            </div>
-            <div className={classes.formItem}>
-                <label htmlFor="phone">Phone:</label>
-                <Field name="phone" component={Input} type="text" />
-            </div>
-            <div className={classes.formItem}>
-                <label htmlFor="email">E-mail:</label>
-                <Field name="email" component={Input} type="email" />
-            </div>
-            <Button>
-                Save Contact
-            </Button>
+            <Field name="firstName" component={renderField} type="text" label="First Name"/>
+            <Field name="lastName" component={renderField} type="text" label="Last Name"/>
+            <Field name="phone" component={renderField} type="text" label="Phone"/>
+            <Field name="email" component={renderField} type="email" label="E-mail"/>
+            <Button disabled={props.invalid || props.submitting || props.pristine}>Save Contact</Button>
         </Form>
     )
 };
 
 export default reduxForm({
     form: 'contact',
-    updateUnregisteredFields: true
+    validate
 })(ContactForm);

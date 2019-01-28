@@ -1,6 +1,7 @@
 .textCenter {
     text-align: center;
 }
+
 .Container {
     display: grid;
     /*grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));*/
@@ -8,6 +9,7 @@
     grid-gap: 50px;
     margin: 20px;
 }
+
 .Item {
     display: inline-flex;
     position: relative;
@@ -21,18 +23,18 @@
     padding: 15px;
     overflow: hidden;
     margin: 0 auto;
-    -webkit-box-shadow: 8px 7px 21px -8px rgba(0,0,0,0.74);
-    -moz-box-shadow: 8px 7px 21px -8px rgba(0,0,0,0.74);
-    box-shadow: 8px 7px 21px -8px rgba(0,0,0,0.74);
+    -webkit-box-shadow: 8px 7px 21px -8px rgba(0, 0, 0, 0.74);
+    -moz-box-shadow: 8px 7px 21px -8px rgba(0, 0, 0, 0.74);
+    box-shadow: 8px 7px 21px -8px rgba(0, 0, 0, 0.74);
 }
 
-@media only screen and (max-width : 840px) {
+@media only screen and (max-width: 840px) {
     .Container {
         grid-template-columns: 1fr 1fr;
     }
 }
 
-@media only screen and (max-width : 540px) {
+@media only screen and (max-width: 540px) {
     .Container {
         grid-template-columns: 1fr;
     }
@@ -46,6 +48,7 @@
     overflow: hidden;
     visibility: hidden;
 }
+
 .formItem {
     display: flex;
     align-items: flex-end;
@@ -64,4 +67,8 @@
 
 .NameField {
     font-weight: bold;
+}
+
+.errorInput {
+    color: red;
 }

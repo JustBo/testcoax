@@ -112,7 +112,7 @@ class Contacts extends Component {
                     Add contact
                 </Button>
                 <Modal show={this.state.modal} modalClosed={this.handleClose}>
-                    <ContactForm onSubmit={this.handleSubmit} data={this.props.form} />
+                    <ContactForm onSubmit={this.handleSubmit} />
                 </Modal>
             </div>
         );

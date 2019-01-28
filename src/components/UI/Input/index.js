@@ -4,11 +4,8 @@ import classes from './Input.module.css';
 
 export default class Input extends Component {
     render() {
-        const {
-            input: { value, onChange }
-        } = this.props;
         return (
-            <input value={value} onChange={onChange} className={classes.input} {...this.props} />
+            <input className={classes.input} {...this.props} />
         );
     }
 }

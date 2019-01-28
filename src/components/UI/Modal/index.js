@@ -5,14 +5,6 @@ import Backdrop from '../Backdrop';
 
 class Modal extends Component {
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
-    }
-
-    componentWillUpdate() {
-        // console.log('[Index] WillUpdate');
-    }
-
     render() {
         return (
             <div>
@@ -20,9 +12,7 @@ class Modal extends Component {
                 <div
                     className={classes.Modal}
                     style={{
-                        // height: this.props.show ? 'auto' : 0,
-                        // width: this.props.show ? 'auto' : 0,
-                        zIndex: this.props.show ? '500' : '-1',
+                        transform: this.props.show ? 'scale(1)' : 'scale(0)',
                         opacity: this.props.show ? '1' : '0'
                     }}>
                     {this.props.children}
