@@ -1,22 +1,43 @@
 .submit-button {
-    padding: 10px;
-    margin: 15px 0;
+    display: block;
+    margin: 15px auto;
     max-width: 300px;
     width: 100%;
     min-width: 100px;
-    transition: all 0.1s ease;
     box-sizing: border-box;
-    box-shadow: 0 10px #999;
-    background-color: #dddddd;
+    background-color: inherit;
 }
 
-.submit-button:hover {
+.button-text {
+    display: block;
+    box-shadow: 0 10px #999;
+    background-color: #ddd;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.1s ease;
+    padding: 10px;
+}
+
+.button-text:hover {
     background-color: #776f6f;
     color: #fff;
 }
 
-.submit-button:active {
-    background-color: #776f6f;
+.button-text:active {
     box-shadow: 0 0 #999;
     transform: translateY(10px);
+}
+
+.disabled-button {
+    background-color: grey;
+}
+
+.disabled-button:active {
+    transform: none;
+    box-shadow: 0 10px #999;
+}
+
+.disabled-button:hover {
+    background-color: grey;
+    color: inherit;
 }

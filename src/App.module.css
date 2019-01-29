@@ -4,7 +4,6 @@
 
 .Container {
     display: grid;
-    /*grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));*/
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 50px;
     margin: 20px;
@@ -46,7 +45,14 @@
 
 .disabled {
     overflow: hidden;
-    visibility: hidden;
+    border: 1px dashed black !important;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.disabled > div {
+    display: none;
 }
 
 .formItem {

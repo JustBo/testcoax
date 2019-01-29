@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
-import classes from '../App.module.css';
-import Button from "../components/UI/Button/index";
-import Modal from "../components/UI/Modal/index";
 import {bindActionCreators} from "redux";
 import {addContact, updateContact, updateContactOrder} from "../actions";
 import {connect} from "react-redux";
+import {initialize} from 'redux-form';
+
+import Button from "../components/UI/Button/index";
+import Modal from "../components/UI/Modal/index";
 import ContactForm from "../components/ContactForm";
+
+import classes from '../App.module.css';
+
 import {removeItem, insertItem, updateObject} from '../utilities'
-import { initialize, destroy } from 'redux-form';
 
 class Contacts extends Component {
 
@@ -36,15 +39,20 @@ class Contacts extends Component {
 
     handleDragEnter(e, key) {
         let order = this.getOrder(this.props.contacts);
-        let newOrder = Object.keys(order).map(item => order[item]);
+        let initialOrder = Object.keys(order).map(item => order[item]);
+        let newOrder = [...initialOrder];
 
-        newOrder = removeItem(newOrder, { index: newOrder.indexOf(this.state.draggable) });
-        newOrder = insertItem(newOrder, { index: Object.keys(order).map(item => order[item]).indexOf(key), item: this.state.draggable });
+        newOrder = removeItem(newOrder, {index: newOrder.indexOf(this.state.draggable)});
+        newOrder = insertItem(newOrder, {
+            index: initialOrder.indexOf(key),
+            item: this.state.draggable
+        });
 
         let ret = newOrder.reduce((state, item, index) => ({
             ...state,
             [item]: index + 1
         }), {});
+
         this.props.updateContactOrder(ret);
     }
 
@@ -59,16 +67,16 @@ class Contacts extends Component {
     }
 
     handleShow() {
-        this.props.reset();
+        this.props.initializeContact({});
         this.setState({
             modal: true
         });
     }
 
     handleSubmit(values) {
-        if(values['id'] === undefined) {
+        if (values['id'] === undefined) {
             this.props.addContact(values);
-        }else{
+        } else {
             this.props.updateContact(values);
         }
         this.handleClose();
@@ -79,7 +87,7 @@ class Contacts extends Component {
             modal: true
         });
         this.props.initializeContact(updateObject(this.props.contacts[key], {
-            id : key
+            id: key
         }));
     }
 
@@ -112,7 +120,7 @@ class Contacts extends Component {
                     Add contact
                 </Button>
                 <Modal show={this.state.modal} modalClosed={this.handleClose}>
-                    <ContactForm onSubmit={this.handleSubmit} />
+                    <ContactForm onSubmit={this.handleSubmit}/>
                 </Modal>
             </div>
         );
@@ -121,8 +129,7 @@ class Contacts extends Component {
 
 function mapStateToProps(state) {
     return {
-        contacts: state.contacts,
-        form: state.form
+        contacts: state.contacts
     };
 }
 
@@ -131,7 +138,6 @@ function mapDispatchToProps(dispatch) {
         addContact,
         updateContact,
         updateContactOrder,
-        reset: () => dispatch(destroy('contact')),
         initializeContact: contact => initialize('contact', contact)
     }, dispatch);
 }

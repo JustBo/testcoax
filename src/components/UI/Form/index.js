@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import classes from './Form.module.css';
 
-export default class Form extends Component {
-    render() {
-        return (
-            <form {...this.props} className={classes.form}>
-                {this.props.children}
-            </form>
-        );
-    }
-}
+const Form = (props) => (
+    <form {...props} className={classes.form}>
+        {props.children}
+    </form>
+);
+
+export default Form;

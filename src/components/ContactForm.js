@@ -24,10 +24,9 @@ const validate = values => {
     }
     if (!values.phone) {
         errors.phone = 'Required';
-    } else if (/\d[+]/g.test(values.phone)) {
+    } else if (!/^\d+$/g.test(values.phone)) {
         errors.phone = 'Invalid phone number';
     }
-    console.log(errors);
     return errors;
 };
 
@@ -44,19 +43,19 @@ const renderField = ({input, label, type, meta: {touched, error}}) => (
 );
 
 const ContactForm = props => {
-    const {handleSubmit} = props;
+    const {handleSubmit, invalid} = props;
     return (
         <Form onSubmit={handleSubmit}>
             <Field name="firstName" component={renderField} type="text" label="First Name"/>
             <Field name="lastName" component={renderField} type="text" label="Last Name"/>
             <Field name="phone" component={renderField} type="text" label="Phone"/>
             <Field name="email" component={renderField} type="email" label="E-mail"/>
-            <Button disabled={props.invalid || props.submitting || props.pristine}>Save Contact</Button>
+            <Button disabled={invalid} className={invalid ? classes.disabledButton : ''}>Save Contact</Button>
         </Form>
     )
 };
 
 export default reduxForm({
     form: 'contact',
-    validate
+    validate,
 })(ContactForm);

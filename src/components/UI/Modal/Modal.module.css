@@ -13,6 +13,5 @@
     left: 0;
     margin-right: auto;
     margin-left: auto;
-    transition: all 0.3s ease-out;
-    transform: scale(0);
+    transition: all .4s ease-out;
 }
